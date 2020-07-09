@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +17,15 @@ public class CaiNiaoTestController {
     private static final Logger log = LoggerFactory.getLogger(CaiNiaoTestController.class);
 
     @GetMapping("/callback1")
-    public String caiNiaoCallback(HttpServletRequest req,
+    public JSONObject caiNiaoCallback(HttpServletRequest req,
                                 HttpServletResponse res) {
         String accessCode = req.getParameter("accessCode");
         String appkey = req.getParameter("appkey");
         log.info("accessCode: " + accessCode);
         log.info("appkey: " + appkey);
-        return "success";
+        JSONObject json = new JSONObject();
+        json.put("errCode", 200);
+        json.put("errMsg", "success");
+        return json;
     }
 }
