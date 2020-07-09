@@ -23,9 +23,13 @@ public class CaiNiaoTestController {
         String appkey = req.getParameter("appkey");
         log.info("accessCode: " + accessCode);
         log.info("appkey: " + appkey);
+        JSONObject caiNiaoCallbackReturnMsg = new JSONObject();
+        caiNiaoCallbackReturnMsg.put("accessCode", accessCode);
+        caiNiaoCallbackReturnMsg.put("appkey", appkey);
+
         JSONObject json = new JSONObject();
         json.put("errCode", 200);
-        json.put("errMsg", "success");
+        json.put("errMsg", caiNiaoCallbackReturnMsg);
         json.put("ext", "test1");
         return json;
     }
