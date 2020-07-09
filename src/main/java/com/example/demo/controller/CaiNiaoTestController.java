@@ -16,11 +16,12 @@ public class CaiNiaoTestController {
     private static final Logger log = LoggerFactory.getLogger(CaiNiaoTestController.class);
 
     @GetMapping("/callback1")
-    public void caiNiaoCallback(HttpServletRequest req,
+    public String caiNiaoCallback(HttpServletRequest req,
                                 HttpServletResponse res) {
         String accessCode = req.getParameter("accessCode");
         String appkey = req.getParameter("appkey");
         log.info("accessCode: " + accessCode);
         log.info("appkey: " + appkey);
+        return "success";
     }
 }
