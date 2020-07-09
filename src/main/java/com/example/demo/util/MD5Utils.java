@@ -11,77 +11,148 @@ public class MD5Utils {
 
     private static final Logger log = LoggerFactory.getLogger(MD5Utils.class);
 
-    private MD5Utils() {}
+    /**
+     * Defeats instantiation.
+     */
+
+    private MD5Utils() {
+
+    }
+
 
     public static byte[] md5Bytes(String text) {
-        if (StringUtils.isEmpty(text)) {
+
+        if (null == text || "".equals(text)) {
+
             return new byte[0];
+
         }
+
         return md5Bytes(text.getBytes());
+
     }
 
-    public static byte[] md5Bytes(byte[] bytes) {
-        MessageDigest msd = null;
+
+    public static byte[] md5Bytes(byte[] cnt) {
+
+        MessageDigest msgDigest = null;
+
         try {
-            msd = MessageDigest.getInstance("MD5");
+
+            msgDigest = MessageDigest.getInstance("MD5");
+
         } catch (NoSuchAlgorithmException e) {
-            log.info(e.getMessage());
+
+            throw new IllegalStateException("System doesn't support MD5 algorithm.");
+
         }
-        msd.update(bytes);
-        byte[] digest = msd.digest();
-        return digest;
+
+
+        msgDigest.update(cnt);
+
+        byte[] bytes = msgDigest.digest();
+
+        return bytes;
+
     }
 
-    public static String md5(String text,
-                             boolean ifReturnRaw) {
-        if (StringUtils.isEmpty(text)) {
+
+    public static String md5(String text, boolean isReturnRaw) {
+
+        if (null == text || "".equals(text)) {
+
             return text;
+
         }
+
         byte[] bytes = md5Bytes(text);
+
         return md5Hex(bytes, false);
+
     }
 
-    public static String md5(byte[] bytes,
-                             boolean ifReturnRaw) {
-        byte[] bytes1 = md5Bytes(bytes);
-        return md5Hex(bytes1, ifReturnRaw);
+
+    public static String md5(byte[] cnt, boolean isReturnRaw) {
+
+        byte[] bytes = md5Bytes(cnt);
+
+        return md5Hex(bytes, isReturnRaw);
+
     }
 
-    public static String md5Hex(byte[] bytes,
-                                 boolean ifReturnRaw) {
-        if (ifReturnRaw) {
+
+    private static String md5Hex(byte[] bytes, boolean isReturnRaw) {
+
+        if (isReturnRaw) {
+
             return new String(bytes);
+
         }
+
 
         String md5Str = new String();
-        byte bt;
-        char low, high, tmpChar;
+
+        byte tb;
+
+        char low;
+
+        char high;
+
+        char tmpChar;
+
+
         for (int i = 0; i < bytes.length; i++) {
-            bt = bytes[i];
-            tmpChar = (char) ((bt >>> 4) & 0x000f);
+
+            tb = bytes[i];
+
+
+            tmpChar = (char) ((tb >>> 4) & 0x000f);
+
             if (tmpChar >= 10) {
+
                 high = (char) (('a' + tmpChar) - 10);
+
             } else {
+
                 high = (char) ('0' + tmpChar);
+
             }
+
             md5Str += high;
 
-            tmpChar = (char) (bt & 0x000f);
+
+            tmpChar = (char) (tb & 0x000f);
+
             if (tmpChar >= 10) {
+
                 low = (char) (('a' + tmpChar) - 10);
+
             } else {
+
                 low = (char) ('0' + tmpChar);
+
             }
+
             md5Str += low;
+
         }
+
+
         return md5Str;
+
     }
+
 
     public static String md5(String text) {
+
         return md5(text, false);
+
     }
 
-    public static String md5(byte[] bytes) {
-        return md5(bytes, false);
+
+    public static String md5(byte[] cnt) {
+
+        return md5(cnt, false);
+
     }
 }

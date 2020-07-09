@@ -44,11 +44,13 @@ public class CaiNiaoTestController {
         tokenUrl += "?accessCode=" + accessCode;
         tokenUrl += "&isvAppkey=" + appkey;
         // TODO md5(accessCode + "," + appKey + "," + appSecret);
-        tokenUrl += "&sign=" + MD5Utils.md5(accessCode +
+        String sign = MD5Utils.md5(accessCode +
                 "," +
                 appkey +
                 "," +
                 CaiNiaoTestEnum.CAI_NIAO_TEST_ENUM.getAppSecret());
+        tokenUrl += "&sign=" + sign;
+        log.info("sign: " + sign);
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(tokenUrl);
         CloseableHttpResponse response = null;
@@ -62,7 +64,7 @@ public class CaiNiaoTestController {
         } catch (IOException e) {
             log.info(e.getMessage());
         }
-        
+
         return json;
     }
 }
