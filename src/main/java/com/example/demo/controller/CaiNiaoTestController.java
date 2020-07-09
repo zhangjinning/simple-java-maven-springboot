@@ -29,8 +29,8 @@ public class CaiNiaoTestController {
                                 HttpServletResponse res) {
         String accessCode = req.getParameter("accessCode");
         String appkey = req.getParameter("appkey");
-        log.info("accessCode: " + accessCode);
-        log.info("appkey: " + appkey);
+        log.info("accessCode: \n" + accessCode);
+        log.info("appkey: \n" + appkey);
         JSONObject caiNiaoCallbackReturnMsg = new JSONObject();
         caiNiaoCallbackReturnMsg.put("accessCode", accessCode);
         caiNiaoCallbackReturnMsg.put("appkey", appkey);
@@ -42,7 +42,7 @@ public class CaiNiaoTestController {
 
         String tokenUrl = "http://lcp.cloud.cainiao.com/api/permission/exchangeToken.do";
         tokenUrl += "?accessCode=" + accessCode;
-        tokenUrl += "&isvAppkey=" + appkey;
+        tokenUrl += "&isvAppKey=" + appkey;
         // TODO md5(accessCode + "," + appKey + "," + appSecret);
         String sign = MD5Utils.md5(accessCode +
                 "," +
@@ -50,7 +50,7 @@ public class CaiNiaoTestController {
                 "," +
                 CaiNiaoTestEnum.CAI_NIAO_TEST_ENUM.getAppSecret());
         tokenUrl += "&sign=" + sign;
-        log.info("sign: " + sign);
+        log.info("sign: \n" + sign);
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(tokenUrl);
         CloseableHttpResponse response = null;
