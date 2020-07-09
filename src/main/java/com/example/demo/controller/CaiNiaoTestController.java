@@ -26,7 +26,7 @@ public class CaiNiaoTestController {
         JSONObject json = new JSONObject();
         json.put("errCode", 200);
         json.put("errMsg", "success");
-        json.put("ext", "test");
+        json.put("ext", "test1");
         return json;
     }
 }
