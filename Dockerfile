@@ -3,3 +3,7 @@ FROM openjdk:8-jdk-alpine
 MAINTAINER aning/663232104@qq.com
 
 EXPOSE 8080
+
+CMD echo "hi"
+
+CMD /bin/bash
