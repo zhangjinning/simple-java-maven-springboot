@@ -6,6 +6,8 @@ VOLUME ["/tmp"]
 
 EXPOSE 8080
 
+CMD ["ls -a"]
+
 COPY app.jar app.jar
 
 ENTRYPOINT ["java -jar app.jar"]
