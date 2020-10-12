@@ -7,9 +7,7 @@ ADD target/demo-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 RUN ["mkdir", "err"]
-RUN ["cd", "err"]
-RUN ["touch", "apperr.log"]
-RUN ["cd", ".."]
+RUN ["touch", "err/apperr.log"]
 
 VOLUME ["/err"]
 
