@@ -9,4 +9,4 @@ EXPOSE 8080
 VOLUME /usr/local/mine/app/apperr.log /apperr.log
 
 #ENTRYPOINT ["java", "-jar", "/app.jar"]
-ENTRYPOINT ["nohup", "java", "-jar", "/app.jar", ">/apperr.log", "2>&1&"]
+ENTRYPOINT ["nohup", "java", "-jar", "-Duser.timezone=GMT+08", "/app.jar", ">/apperr.log", "2>&1&"]
