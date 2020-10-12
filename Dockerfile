@@ -4,7 +4,7 @@ MAINTAINER zjnblank.top
 
 ADD target/demo-0.0.1-SNAPSHOT.jar app.jar
 
-ADD  start.sh start.sh
+ADD start.sh start.sh
 
 EXPOSE 8080
 
