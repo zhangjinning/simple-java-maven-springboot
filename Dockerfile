@@ -11,4 +11,4 @@ RUN ["mkdir", "err"]
 VOLUME ["/err"]
 
 #ENTRYPOINT ["java", "-jar", "/app.jar"]
-ENTRYPOINT ["nohup", "java", "-jar", "-Duser.timezone=GMT+08", "/app.jar", ">/err/apperr.log", "2>&1&"]
+ENTRYPOINT ["nohup", "java", "-jar", "-Duser.timezone=GMT+08", "/app.jar", ">apperr.log", "2>&1&"]
