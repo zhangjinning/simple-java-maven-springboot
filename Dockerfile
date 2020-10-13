@@ -11,4 +11,4 @@ EXPOSE 8080
 #ENTRYPOINT ["java", "-jar", "/app.jar"]
 #CMD ["nohup", "java", "-jar", "-Duser.timezone=GMT+08", "/app.jar", ">", "/apperr.log", "2>&1&"]
 CMD ["chmod", "+x", "start.sh"]
-ENTRYPOINT ["sh", "start.sh"]
+CMD ["sh", "start.sh"]
