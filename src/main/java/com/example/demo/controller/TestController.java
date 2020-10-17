@@ -10,6 +10,6 @@ public class TestController {
 
     @GetMapping("/say")
     public String sayHello() {
-        return "I get this skill";
+        return "I get this skill once";
     }
 }
